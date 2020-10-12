@@ -1,4 +1,4 @@
-package streamamgapp.injection
+package streamamgapp.dependencyinjection
 
 import android.content.Context
 import dagger.Module

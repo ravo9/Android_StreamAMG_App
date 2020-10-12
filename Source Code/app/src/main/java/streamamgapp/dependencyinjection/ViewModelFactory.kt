@@ -1,4 +1,4 @@
-package streamamgapp.injection
+package streamamgapp.dependencyinjection
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
