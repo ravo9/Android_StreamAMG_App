@@ -1,4 +1,4 @@
-package streamamgapp.viewmodels
+package streamamgapp.interactors
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import org.junit.Assert
@@ -11,16 +11,16 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import retrofit2.mock.Calls
 import streamamgapp.models.*
+import streamamgapp.network.ApiClient
 import streamamgapp.network.interactors.VideosNetworkInteractor
 
+class VideosNetworkInteractorTest {
 
-class FeedViewModelTest {
-
-    private var viewModel: FeedViewModel? = null
+    private var videosNetworkInteractor: VideosNetworkInteractor? = null
     private var fakeGetVideosResponseGsonModel: GetVideosResponse? = null
 
     @Mock
-    private val videosNetworkInteractor: VideosNetworkInteractor? = null
+    private val apiClient: ApiClient? = null
 
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
@@ -31,8 +31,8 @@ class FeedViewModelTest {
         // Inject Mocks
         MockitoAnnotations.initMocks(this)
 
-        // Initialize the ViewModel
-        viewModel = FeedViewModel(videosNetworkInteractor!!)
+        // Initialize the Interactor
+        videosNetworkInteractor = VideosNetworkInteractor(apiClient!!)
 
         // Prepare fake data
         val title = "fake/video/title"
@@ -52,18 +52,19 @@ class FeedViewModelTest {
     }
 
     @Test
-    fun fetchAllVideosByFeedViewModel() {
+    fun fetchAllVideosByVideosNetworkInteractor() {
 
-        // Prepare VideosNetworkInteractor response
+        // Prepare API response
         val getAllVideosResponse = Calls.response(fakeGetVideosResponseGsonModel!!)
 
         // Set testing conditions
-        Mockito.`when`(videosNetworkInteractor?.getVideos()).thenReturn(getAllVideosResponse)
+        Mockito.`when`(apiClient?.getVideos()).thenReturn(getAllVideosResponse)
 
         // Perform the action
-        val receivedGetAllVideosResponse = viewModel?.getVideos()
+        val receivedGetAllVideosResponse = videosNetworkInteractor?.getVideos()
 
         // Check results
         Assert.assertSame(getAllVideosResponse, receivedGetAllVideosResponse)
+
     }
 }

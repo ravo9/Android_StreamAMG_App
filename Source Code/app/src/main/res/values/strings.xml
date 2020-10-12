@@ -3,10 +3,11 @@
     <string name="app_name">Stream AMG App</string>
 
     <string name="loading">Loading…</string>
-    <string name="network_problem_check_internet_connection">Network problem. Check Internet connection please.</string>
+    <string name="loading_problem_check_the_internet_connection">Loading problem. Check the Internet connection please.</string>
     <string name="try_again">Try again</string>
     <string name="refresh">Refresh</string>
     <string name="change_order">Change order</string>
     <string name="close">Close</string>
+    <string name="default_time">0:00:00</string>
 
 </resources>
