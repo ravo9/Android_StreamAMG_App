@@ -22,7 +22,6 @@ class TimeFormatterTest {
         timeFormatter = TimeFormatter()
     }
 
-
     @Test
     fun formatActualValue() {
 

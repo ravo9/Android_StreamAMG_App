@@ -11,16 +11,17 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import retrofit2.mock.Calls
 import streamamgapp.models.*
-import streamamgapp.network.interactors.VideosNetworkInteractor
+import streamamgapp.network.ApiClient
 
 
 class FeedViewModelTest {
 
     private var viewModel: FeedViewModel? = null
-    private var fakeGetVideosResponseGsonModel: GetVideosResponse? = null
+    private var fakeGetVideosResponseGson: GetVideosResponse? = null
+    private var fakeGetVideosError: Error? = null
 
     @Mock
-    private val videosNetworkInteractor: VideosNetworkInteractor? = null
+    private val apiClient: ApiClient? = null
 
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
@@ -32,7 +33,7 @@ class FeedViewModelTest {
         MockitoAnnotations.initMocks(this)
 
         // Initialize the ViewModel
-        viewModel = FeedViewModel(videosNetworkInteractor!!)
+        viewModel = FeedViewModel(apiClient!!)
 
         // Prepare fake data
         val title = "fake/video/title"
@@ -48,17 +49,20 @@ class FeedViewModelTest {
         val fakeMediaData = MediaData(thumbnailUrl)
         val fakeVideo = Video(videoId, fakeMediaData, fakeMetaData)
         val fakeSection = Section(sectionId, sectionName, listOf(fakeVideo))
-        fakeGetVideosResponseGsonModel = GetVideosResponse(listOf(fakeSection))
+        fakeGetVideosResponseGson = GetVideosResponse(listOf(fakeSection))
+
+        // Prepare fake Error object
+        fakeGetVideosError = Error("fake/api/call/error")
     }
 
     @Test
     fun fetchAllVideosByFeedViewModel() {
 
-        // Prepare VideosNetworkInteractor response
-        val getAllVideosResponse = Calls.response(fakeGetVideosResponseGsonModel!!)
+        // Prepare API response
+        val getAllVideosResponse = Calls.response(fakeGetVideosResponseGson!!)
 
         // Set testing conditions
-        Mockito.`when`(videosNetworkInteractor?.getVideos()).thenReturn(getAllVideosResponse)
+        Mockito.`when`(apiClient?.getVideos()).thenReturn(getAllVideosResponse)
 
         // Perform the action
         val receivedGetAllVideosResponse = viewModel?.getVideos()
