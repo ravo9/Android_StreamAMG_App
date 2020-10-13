@@ -5,9 +5,10 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="colorBackground">#FFF</color>
-    <color name="colorBackgroundAlternative">#000</color>
+    <color name="colorBackground">#F4F3F5</color>
+    <color name="colorBlue">#009EE1</color>
 
-    <color name="colorTextAlternative">#FFF</color>
+    <color name="colorTextMain">#1E0F35</color>
+    <color name="colorTextAlternative">#797185</color>
 
 </resources>

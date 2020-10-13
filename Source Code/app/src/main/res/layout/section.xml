@@ -16,11 +16,35 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="20dp"
         tools:text="Header"
-        android:textColor="#1E0F35"
+        android:textColor="@color/colorTextMain"
         android:fontFamily="sans-serif-black"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/view_all"
+        android:textColor="@color/colorTextMain"
+        android:textAllCaps="true"
+        android:textSize="11sp"
+        android:layout_marginEnd="12dp"
+
+        app:layout_constraintEnd_toStartOf="@+id/imageView_view_all_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView"/>
+
+    <ImageView
+        android:id="@+id/imageView_view_all_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_plus"
+        android:layout_marginEnd="26dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

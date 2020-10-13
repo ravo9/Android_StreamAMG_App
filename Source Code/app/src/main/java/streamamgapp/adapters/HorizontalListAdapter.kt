@@ -10,8 +10,10 @@ import kotlinx.android.synthetic.main.video.view.*
 import streamamgapp.R
 import streamamgapp.models.Video
 import streamamgapp.utils.TimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
-// Internal adapter providing functionality of horizontally-scriolled list nested within main feed list (recycler view)
+// Internal adapter providing functionality of horizontally-scrolled list nested within main feed list (recycler view)
 class HorizontalListAdapter(list: List<Video>?, private val context: Context) : RecyclerView.Adapter<HorizontalListAdapter.ViewHolder>() {
 
     private var videosList: List<Video> = ArrayList()
@@ -38,8 +40,10 @@ class HorizontalListAdapter(list: List<Video>?, private val context: Context) : 
         val viewHolder = holder as VideoViewHolder
 
         // Prepare fetched data
-        val corecategories = videosList[position].metaData?.corecategories?.joinToString(separator = " | ")?.toUpperCase()
-        val title = videosList[position].metaData?.title
+        val corecategories = videosList[position].metaData?.corecategories?.joinToString(separator = " | ")?.toUpperCase(
+            Locale.getDefault()
+        )
+        val title = videosList[position].metaData?.title?.replace(" |", ",")
         val pictureUrl = videosList[position].mediaData?.thumbnailUrl
         val time = TimeFormatter().formatTimeToDisplay(videosList[position].metaData?.videoDuration)
 
